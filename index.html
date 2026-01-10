@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FarmaJovi | Farmacia en La Serena</title>
+
+  <meta name="description" content="FarmaJovi es una farmacia en La Serena con atención cercana, orientación farmacéutica y foco en salud y bienestar. WhatsApp +56 9 4274 8056." />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#f7c6d8" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="FarmaJovi | Farmacia en La Serena" />
+  <meta property="og:description" content="FarmaJovi te cuida. Atención cercana, orientación farmacéutica y contacto directo por WhatsApp." />
+  <meta property="og:type" content="website" />
+
+  <style>
+    :root{
+      --pink-50:#fff6fa;
+      --pink-100:#ffe3ee;
+      --pink-200:#f7c6d8;
+      --pink-600:#c83a74;
+      --ink:#1d1d1f;
+      --muted:#5a5a60;
+      --card:#ffffff;
+      --shadow:0 10px 30px rgba(0,0,0,.08);
+      --radius:18px;
+      --max:1100px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+      color:var(--ink);
+      background:
+        radial-gradient(1000px 600px at 20% 0%, var(--pink-100), transparent 60%),
+        linear-gradient(180deg, var(--pink-50), #ffffff 45%);
+    }
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:var(--max);margin:auto;padding:20px}
+    header{
+      display:flex;justify-content:space-between;align-items:center;gap:16px;
+      padding:10px 0 18px;
+    }
+    .brand{display:flex;align-items:center;gap:12px}
+    .logoImg{
+      width:48px;height:48px;border-radius:14px;
+      background:#fff;border:1px solid rgba(0,0,0,.06);
+      box-shadow:var(--shadow);object-fit:contain;padding:6px;
+    }
+    nav{display:flex;gap:10px;flex-wrap:wrap}
+    .chip{
+      padding:10px 12px;border-radius:999px;
+      background:#fff;border:1px solid rgba(200,58,116,.15);
+      font-size:13px;
+    }
+    .card{
+      background:var(--card);border-radius:var(--radius);
+      border:1px solid rgba(0,0,0,.06);box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    /* HERO */
+    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:14px}
+    .heroBanner{
+      min-height:340px;padding:22px;
+      background:
+        linear-gradient(180deg,rgba(255,246,250,.1),rgba(255,246,250,.95) 70%),
+        url("assets/banner-farmajovi.jpg");
+      background-size:cover;background-position:center;
+      display:flex;flex-direction:column;justify-content:flex-end;gap:10px;
+    }
+    .headline{font-size:42px;margin:0}
+    .sub{color:var(--muted);font-size:16px;max-width:60ch}
+    .ctaRow{display:flex;gap:10px;flex-wrap:wrap}
+    .btn{
+      padding:12px 14px;border-radius:14px;
+      border:1px solid rgba(0,0,0,.08);background:#fff;
+      font-weight:700;font-size:14px;
+    }
+    .btn.primary{
+      background:linear-gradient(135deg,var(--pink-200),#ffd1e1);
+      color:#7b1240;
+    }
+
+    /* ASIDE */
+    .aside{padding:18px;display:flex;flex-direction:column;gap:12px}
+    .kv{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+    .kv li{
+      padding:12px;border-radius:14px;
+      background:rgba(255,246,250,.85);
+      border:1px solid rgba(200,58,116,.12);
+    }
+    .label{font-size:12px;color:var(--muted)}
+    .value{font-weight:800}
+
+    /* SECTIONS */
+    .section{margin-top:14px;padding:18px}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .item{
+      padding:14px;border-radius:16px;
+      background:rgba(255,246,250,.7);
+      border:1px solid rgba(200,58,116,.12);
+    }
+    .item h3{margin:0 0 6px}
+    .item p{margin:0;color:var(--muted);font-size:14px}
+
+    /* FRONTIS */
+    .frontisWrap{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .photoCard img{
+      width:100%;height:100%;object-fit:cover;
+      max-height:340px;display:block;
+    }
+
+    footer{
+      margin-top:18px;padding:18px 0;border-top:1px solid rgba(0,0,0,.06);
+      font-size:12.5px;color:var(--muted);
+      display:flex;justify-content:space-between;flex-wrap:wrap;
+    }
+
+    @media(max-width:900px){
+      .hero,.frontisWrap{grid-template-columns:1fr}
+      .grid{grid-template-columns:1fr}
+      .headline{font-size:34px}
+    }
+    @media(max-width:520px){
+      .btn{width:100%;text-align:center}
+    }
+  </style>
+
+  <!-- Datos estructurados -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Pharmacy",
+    "name":"FarmaJovi",
+    "address":{
+      "@type":"PostalAddress",
+      "streetAddress":"Av. Alberto Arenas 3986",
+      "addressLocality":"La Serena",
+      "addressRegion":"Coquimbo",
+      "addressCountry":"CL"
+    },
+    "telephone":"+56 9 4274 8056",
+    "openingHoursSpecification":[
+      {
+        "@type":"OpeningHoursSpecification",
+        "dayOfWeek":["Monday","Wednesday","Thursday","Friday","Saturday"],
+        "opens":"10:00","closes":"23:00"
+      },
+      {
+        "@type":"OpeningHoursSpecification",
+        "dayOfWeek":["Tuesday","Sunday"],
+        "opens":"12:00","closes":"22:00"
+      }
+    ],
+    "availableService":{
+      "@type":"Service",
+      "name":"Despacho a domicilio",
+      "description":"Disponible solo para casos puntuales y emergencias."
+    }
+  }
+  </script>
+</head>
+
+<body>
+<div class="wrap">
+
+<header>
+  <div class="brand">
+    <img src="assets/logo-farmajovi.jpg" class="logoImg" alt="Logo FarmaJovi">
+    <div>
+      <strong>FarmaJovi</strong><br>
+      <small>Farmacia en La Serena</small>
+    </div>
+  </div>
+  <nav>
+    <a class="chip" href="#servicios">Servicios</a>
+    <a class="chip" href="#frontis">Frontis</a>
+    <a class="chip" href="https://share.google/AhAfWRFgNrW4zvGZ7" target="_blank">Ubicación</a>
+    <a class="chip" href="#faq">FAQ</a>
+  </nav>
+</header>
+
+<main class="hero">
+  <section class="card">
+    <div class="heroBanner">
+      <h1 class="headline">FarmaJovi te cuida</h1>
+      <p class="sub">
+        Farmacia en La Serena con atención cercana, orientación farmacéutica profesional
+        y foco en salud y bienestar.
+      </p>
+      <div class="ctaRow">
+        <a class="btn primary" href="https://wa.me/56942748056" target="_blank">📲 WhatsApp</a>
+        <a class="btn" href="https://share.google/AhAfWRFgNrW4zvGZ7" target="_blank">📍 Abrir mapa</a>
+        <a class="btn" href="https://www.instagram.com/farmajovi/" target="_blank">📷 Instagram</a>
+      </div>
+    </div>
+
+    <div id="servicios" class="section">
+      <div class="grid">
+        <div class="item">
+          <h3>Orientación farmacéutica</h3>
+          <p>Te ayudamos a entender y usar correctamente tu tratamiento.</p>
+        </div>
+        <div class="item">
+          <h3>Medicamentos y productos</h3>
+          <p>Disponibilidad, alternativas y asesoría clara.</p>
+        </div>
+        <div class="item">
+          <h3>Bienestar y prevención</h3>
+          <p>Apoyo en autocuidado y decisiones informadas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <aside class="card aside">
+    <h2>Datos oficiales</h2>
+    <ul class="kv">
+      <li><div class="label">Dirección</div><div class="value">Av. Alberto Arenas 3986, La Serena</div></li>
+      <li><div class="label">WhatsApp</div><div class="value">+56 9 4274 8056</div></li>
+      <li>
+        <div class="label">Horario</div>
+        <div class="value">
+          Lun, Mié, Jue, Vie, Sáb: 10:00–23:00<br>
+          Mar y Dom: 12:00–22:00
+        </div>
+      </li>
+    </ul>
+  </aside>
+</main>
+
+<section id="frontis" class="section card">
+  <div class="frontisWrap">
+    <div class="photoCard">
+      <img src="assets/frontis-farmajovi.jpg" alt="Frontis FarmaJovi">
+    </div>
+    <div>
+      <h2>Te esperamos en La Serena</h2>
+      <p class="sub">
+        Nuestro local está ubicado en Av. Alberto Arenas 3986.
+        Escríbenos antes de venir si necesitas orientación.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="section card">
+  <h2>Preguntas frecuentes</h2>
+  <div class="grid" style="grid-template-columns:1fr">
+    <div class="item">
+      <h3>¿Puedo consultar por WhatsApp?</h3>
+      <p>Sí, puedes escribirnos directamente y recibir orientación farmacéutica.</p>
+    </div>
+    <div class="item">
+      <h3>¿Hacen despacho a domicilio?</h3>
+      <p>Solo para casos puntuales y emergencias, sujeto a evaluación.</p>
+    </div>
+    <div class="item">
+      <h3>¿Atienden con Química Farmacéutica?</h3>
+      <p>Sí, con orientación profesional y cercana.</p>
+    </div>
+    <div class="item">
+      <h3>¿Puedo cotizar antes de ir?</h3>
+      <p>Sí, consúltanos por WhatsApp.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© <span id="y"></span> FarmaJovi</p>
+  <p>La Serena, Chile</p>
+</footer>
+
+</div>
+
+<script>
+document.getElementById("y").textContent=new Date().getFullYear();
+</script>
+
+</body>
+</html>
