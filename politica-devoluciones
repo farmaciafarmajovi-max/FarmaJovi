@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="es">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Política de devoluciones | FarmaJovi</title>
+
+<meta name="description" content="Política de devoluciones de FarmaJovi. Información sobre cambios y devoluciones de productos adquiridos en nuestra farmacia en La Serena.">
+
+<meta name="robots" content="index,follow">
+
+<link rel="canonical" href="https://farmaciafarmajovi-max.github.io/FarmaJovi/politica-devoluciones.html">
+
+<style>
+
+body{
+font-family: Arial, Helvetica, sans-serif;
+background:#fff;
+color:#333;
+margin:0;
+line-height:1.6;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+padding:40px 20px;
+}
+
+h1{
+font-size:36px;
+margin-bottom:20px;
+}
+
+h2{
+margin-top:30px;
+}
+
+.box{
+background:#fafafa;
+padding:20px;
+border-radius:12px;
+border:1px solid #eee;
+}
+
+.footer{
+margin-top:50px;
+font-size:14px;
+color:#777;
+}
+
+a{
+color:#d63384;
+text-decoration:none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Política de devoluciones</h1>
+
+<p>
+En <strong>FarmaJovi</strong> priorizamos la seguridad sanitaria y la calidad de los productos que ofrecemos a nuestros clientes.
+</p>
+
+<div class="box">
+
+<h2>No se aceptan devoluciones</h2>
+
+<p>
+Debido a la naturaleza de los <strong>suplementos alimenticios, medicamentos y productos de salud</strong>, 
+<strong>no se aceptan devoluciones ni cambios una vez realizada la compra</strong>.
+</p>
+
+<p>
+Esta política busca garantizar la seguridad de los clientes y evitar la manipulación o alteración de productos destinados al consumo.
+</p>
+
+</div>
+
+<h2>Consulta antes de comprar</h2>
+
+<p>
+Si tienes dudas sobre un producto, su presentación o disponibilidad, te recomendamos consultar antes de realizar tu compra.
+</p>
+
+<p>
+Nuestro equipo puede orientarte para ayudarte a tomar una decisión informada.
+</p>
+
+<h2>Contacto</h2>
+
+<p>
+<strong>FarmaJovi</strong><br>
+Av. Alberto Arenas 3986, Local 2<br>
+La Serena, Chile
+</p>
+
+<p>
+WhatsApp:  
+<a href="https://wa.me/56942748056">+56 9 4274 8056</a>
+</p>
+
+<div class="footer">
+
+<p>
+FarmaJovi – Farmacia en La Serena<br>
+Atención cercana y orientación farmacéutica profesional.
+</p>
+
+</div>
+
+</div>
+
+</body>
+</html>
