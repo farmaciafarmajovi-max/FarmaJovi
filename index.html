@@ -138,3 +138,12 @@ body{color:var(--ink)!important;background:var(--paper)!important}.top{backgroun
 .chatbox{display:none!important}
 .chatbox.open{display:flex!important}
 </style>
+
+<style>
+/* Separación clara entre tarjetas en pantallas pequeñas */
+.cards,.info{display:grid!important;gap:18px!important;row-gap:18px!important}
+.cards>.card,.info>.card{margin:0!important}
+.faq{display:grid!important;gap:12px!important}
+.faq details{margin:0!important}
+@media(min-width:801px){.cards,.info{row-gap:18px!important;column-gap:18px!important}}
+</style>
