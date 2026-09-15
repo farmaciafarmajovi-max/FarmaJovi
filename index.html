@@ -132,3 +132,9 @@ body{color:var(--ink)!important;background:var(--paper)!important}.top{backgroun
 .messages{min-height:0!important;height:auto!important}
 @media(max-width:800px){.chatbox{width:calc(100vw - 24px)!important;height:calc(100vh - 24px)!important;max-height:calc(100vh - 24px)!important}.messages{max-height:none!important}}
 </style>
+
+<style>
+/* Estado correcto del asistente: cerrado hasta que la persona lo abra */
+.chatbox{display:none!important}
+.chatbox.open{display:flex!important}
+</style>
