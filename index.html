@@ -235,3 +235,15 @@ document.addEventListener('click',e=>{const b=e.target.closest('#turnos .turnosF
 <script>
 (()=>{const p=document.getElementById('fj24h');if(!p)return;document.addEventListener('pointerdown',e=>{const b=e.target.closest('#turnos .turnosFilter');if(!b)return;if((b.dataset.city||'').toLowerCase()==='la serena'){p.hidden=false;setTimeout(()=>p.scrollIntoView({behavior:'smooth',block:'start'}),20)}else p.hidden=true},false)})();
 </script>
+<script>
+/* Métricas anónimas para el panel: no se guardan textos médicos ni datos personales */
+(()=>{
+ const SB='https://bwytvofvxbkdntsoipmf.supabase.co',KEY='sb_publishable_vAgutfClE7NUInmPJEaSYg_-o6-KMIT',sent=new Map();
+ const send=label=>{if(!label||sent.has(label))return;sent.set(label,1);fetch(SB+'/rest/v1/chat_interactions',{method:'POST',headers:{apikey:KEY,'Content-Type':'application/json',Prefer:'return=minimal'},body:JSON.stringify({question:label})}).catch(()=>{})};
+ const classify=q=>{const x=(q||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();if(/precio|cuanto|cuesta|valor|cotiz/.test(x))return'precio';if(/stock|dispon|tienen|hay|queda/.test(x))return'stock';if(/ubic|donde|direccion|llegar|turno/.test(x))return'ubicacion';return'general'};
+ document.getElementById('buscarPrecioFijo')?.addEventListener('click',()=>send('price:search'));
+ document.getElementById('chatForm')?.addEventListener('submit',()=>send('chat:'+classify(document.getElementById('chatInput')?.value)));
+ document.addEventListener('click',e=>{const a=e.target.closest('a');if(!a)return;const h=a.href||'';if(h.includes('wa.me'))send('click:whatsapp');else if(h.includes('turnosdefarmacia')||h.includes('seremi4.redsalud')||h.includes('farmanet'))send('click:turnos');else if(h.includes('ispch.cl')||h.includes('svi.ispch'))send('click:isp')});
+})();
+</script>
+</body></html>
