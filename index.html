@@ -186,3 +186,16 @@ body{color:var(--ink)!important;background:var(--paper)!important}.top{backgroun
  fetch(API,{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('api');return r.json()}).then(data=>{const rows=Array.isArray(data)?data:(data.data||data.results||[]);all=rows.filter(x=>['la serena','coquimbo'].includes(norm(val(x,'comuna_nombre','comuna'))));render('all')}).catch(()=>{grid.className='turnosEmpty';grid.innerHTML='No fue posible cargar el dato en vivo en este momento. Consulta el buscador oficial de Farmanet para ver la información actualizada: <a href="https://www.turnosdefarmacia.cl/" target="_blank" rel="noopener" style="color:#a94f61;font-weight:750">Abrir Farmanet ↗</a>'});
 })();
 </script>
+
+<script>
+(function(){
+ const api='https://midas.minsal.cl/farmacia_v2/WS/getLocalesTurnos.php',sec=document.getElementById('turnos');if(!sec)return;
+ const norm=s=>(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+ const esc=s=>String(s||'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+ const get=(o,k)=>String(o[k]||'').trim();
+ let fresh=[];
+ function draw(city='all'){const g=document.getElementById('turnosLiveGrid');if(!g)return;const rs=fresh.filter(x=>city==='all'||norm(get(x,'comuna_nombre'))===city);if(!rs.length){g.className='turnosEmpty';g.innerHTML='No hay farmacias publicadas para esta comuna en la fecha más reciente. <a href="https://www.turnosdefarmacia.cl/" target="_blank" rel="noopener" style="color:#a94f61;font-weight:750">Abrir buscador oficial ↗</a>';return}g.className='turnosLiveGrid';g.innerHTML=rs.map(x=>{const n=get(x,'local_nombre')||'Farmacia de turno',c=get(x,'comuna_nombre'),a=get(x,'local_direccion')||'Dirección no publicada',p=get(x,'local_telefono'),o=get(x,'funcionamiento_hora_apertura')||'09:00',cl=get(x,'funcionamiento_hora_cierre')||'08:59',m='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(a+' '+c);return '<article class="turnoCard"><div class="turnoTop"><h3>'+esc(n)+'</h3><span class="turnoStatus">De turno</span></div><div class="turnoMap"><a href="'+m+'" target="_blank" rel="noopener"><span>⌖</span>Ver ubicación en Google Maps ↗</a></div><div class="turnoBody"><div class="turnoMeta">📍 <span><b>'+esc(c)+'</b><br>'+esc(a)+'</span></div>'+(p?'<div class="turnoMeta">☎ <span><b>Teléfono</b><br>'+esc(p)+'</span></div>':'')+'<div class="turnoMeta">◷ <span><b>Horario de turno</b><br>'+esc(o)+' — '+esc(cl)+' hrs</span></div><small>Publicado: '+esc(get(x,'fecha'))+'</small></div><div class="turnoActions">'+(p?'<a href="tel:'+p.replace(/[^0-9+]/g,'')+'">Llamar</a>':'')+'<a class="secondary" href="'+m+'" target="_blank" rel="noopener">Cómo llegar</a></div></article>'}).join('')}
+ sec.addEventListener('click',e=>{const b=e.target.closest('.turnosFilter');if(!b)return;e.stopImmediatePropagation();sec.querySelectorAll('.turnosFilter').forEach(x=>x.classList.toggle('active',x===b));draw(b.dataset.city)},true);
+ fetch(api,{cache:'no-store'}).then(r=>r.json()).then(data=>{const rows=(Array.isArray(data)?data:(data.data||data.results||[])).filter(x=>['la serena','coquimbo'].includes(norm(get(x,'comuna_nombre'))));const dates=rows.map(x=>get(x,'fecha')).filter(Boolean).sort();const latest=dates[dates.length-1];fresh=rows.filter(x=>get(x,'fecha')===latest);draw('all')}).catch(()=>{});
+})();
+</script>
