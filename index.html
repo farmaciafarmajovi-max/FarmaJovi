@@ -199,3 +199,7 @@ body{color:var(--ink)!important;background:var(--paper)!important}.top{backgroun
  fetch(api,{cache:'no-store'}).then(r=>r.json()).then(data=>{const rows=(Array.isArray(data)?data:(data.data||data.results||[])).filter(x=>['la serena','coquimbo'].includes(norm(get(x,'comuna_nombre'))));const dates=rows.map(x=>get(x,'fecha')).filter(Boolean).sort();const latest=dates[dates.length-1];fresh=rows.filter(x=>get(x,'fecha')===latest);draw('all')}).catch(()=>{});
 })();
 </script>
+
+<script>
+(function(){const s=document.getElementById('turnos');if(!s)return;setTimeout(()=>{const g=document.getElementById('turnosLiveGrid');if(!g)return;const cards=[...g.querySelectorAll('.turnoCard')],dates=cards.map(c=>(c.innerText.match(/Publicado: (\d{4}-\d{2}-\d{2})/)||[])[1]).filter(Boolean),latest=dates.sort().pop();cards.forEach(c=>{if(!c.innerText.includes('Publicado: '+latest))c.remove()});s.addEventListener('click',e=>{const b=e.target.closest('.turnosFilter');if(!b)return;e.stopImmediatePropagation();const city=b.dataset.city;g.innerHTML='';cards.filter(c=>c.innerText.includes('Publicado: '+latest)&&(city==='all'||c.innerText.toLowerCase().includes(city))).forEach(c=>g.appendChild(c));if(!g.children.length)g.innerHTML='No hay farmacias publicadas para esta comuna en la fecha más reciente. <a href="https://www.turnosdefarmacia.cl/" target="_blank" rel="noopener" style="color:#a94f61;font-weight:750">Abrir buscador oficial ↗</a>'},true)},2500)})();
+</script>
