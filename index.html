@@ -152,3 +152,14 @@ body{background:#fffafa!important;color:var(--fj-ink)!important}
 #chatBtn:after{content:""!important;display:block!important;position:absolute!important;margin:18px 0 0 -13px!important;width:8px!important;height:8px!important;background:#fff!important;clip-path:polygon(0 0,100% 0,0 100%)!important}
 @media(max-width:700px){#turnos{padding:64px 0!important}#turnos .turnosHeader{display:block!important}#turnos .turnosActions{margin-top:16px!important}#turnos .turnosActions button{flex:1 1 auto!important}#turnosLiveGrid{grid-template-columns:1fr!important;gap:16px!important}#turnosLiveGrid>*,#turnosLiveGrid .turnoCard{padding:20px!important}}
 </style>
+<style id="farmajovi-final-polish">
+#turnos .turnosFilters{display:flex!important;flex-wrap:wrap!important;gap:10px!important;margin:20px 0 26px!important}
+#turnos .turnosFilter{appearance:none!important;border:1px solid #dfa9b7!important;border-radius:999px!important;padding:11px 18px!important;background:#fff!important;color:#9e3f59!important;font:inherit!important;font-weight:800!important;cursor:pointer!important;transition:.2s ease!important}
+#turnos .turnosFilter:hover,#turnos .turnosFilter.active{background:#c85f78!important;color:#fff!important;border-color:#c85f78!important}
+.chatBtn{width:62px!important;height:62px!important;border-radius:50%!important;border:3px solid #fff!important;background:#c85f78!important;color:transparent!important;font-size:0!important;display:grid!important;place-items:center!important;box-shadow:0 10px 24px rgba(117,45,67,.22)!important}
+.chatBtn span{display:none!important}
+.chatBtn::before{content:""!important;width:25px!important;height:18px!important;display:block!important;border-radius:50%!important;background:#fff!important;position:relative!important}
+.chatBtn::after{content:""!important;width:8px!important;height:8px!important;display:block!important;position:absolute!important;margin:18px 0 0 -13px!important;background:#fff!important;clip-path:polygon(0 0,100% 0,0 100%)!important}
+.chatBtn:hover{background:#9e3f59!important;transform:translateY(-3px) scale(1.03)!important}
+@media(max-width:700px){#turnos .turnosFilters{display:grid!important;grid-template-columns:1fr!important}#turnos .turnosFilter{width:100%!important}}
+</style>
