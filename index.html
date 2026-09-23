@@ -1,4 +1,17 @@
-<style id="farmajovi-card-repair">
+<style id="farmajovi-turnos-typography">
+/* Jerarquía editorial para tarjetas de turno */
+#turnosLiveGrid .turnoCard{font-size:15px!important;line-height:1.55!important}
+#turnosLiveGrid h3{font-size:19px!important;line-height:1.2!important;letter-spacing:-.02em!important;font-weight:850!important}
+#turnosLiveGrid .turnoMap{margin:18px 0 14px!important;padding-top:14px!important;border-top:1px solid #f1dce1!important}
+#turnosLiveGrid .turnoMap a{font-size:14px!important;line-height:1.35!important;letter-spacing:-.01em!important}
+#turnosLiveGrid .turnoBody{display:grid!important;gap:12px!important}
+#turnosLiveGrid .turnoMeta{display:grid!important;grid-template-columns:20px minmax(0,1fr)!important;gap:8px!important;align-items:start!important;margin:0!important;color:#5f4850!important;font-size:15px!important;line-height:1.5!important}
+#turnosLiveGrid .turnoMeta b{display:inline-block!important;margin-bottom:2px!important;color:#30232b!important;font-size:12px!important;letter-spacing:.055em!important;font-weight:850!important}
+#turnosLiveGrid small{display:block!important;margin-top:2px!important;color:#93737d!important;font-size:12px!important;line-height:1.35!important}
+#turnosLiveGrid .turnoActions{margin-top:22px!important;padding-top:18px!important;border-top:1px solid #f1dce1!important}
+#turnosLiveGrid .turnoActions a{font-size:14px!important;font-weight:850!important;min-height:44px!important}
+@media(max-width:700px){#turnosLiveGrid .turnoCard{font-size:14px!important}#turnosLiveGrid h3{font-size:18px!important}#turnosLiveGrid .turnoActions a{width:100%!important}}
+</style><style id="farmajovi-card-repair">
 /* Tarjetas FarmaJovi: iconos compactos y separación consistente */
 .feature .cards,#servicios .cards,#galeria .cards{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:20px!important}
 .info{display:grid!important;gap:20px!important;align-content:start!important}
