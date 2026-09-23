@@ -49,7 +49,30 @@ img{max-width:100%;height:auto}
   .links a{display:inline-flex!important;white-space:nowrap!important}
 }
 </style>
-</head>
+<style id="mobile-hero-fix">
+/* Bienvenida e imágenes optimizadas para móviles */
+html,body{width:100%;max-width:100%;overflow-x:hidden!important}
+@media(max-width:800px){
+  .hero{width:100%;padding:48px 0 52px!important;overflow:hidden!important}
+  .heroGrid{width:100%!important;max-width:100%!important;grid-template-columns:minmax(0,1fr)!important;gap:30px!important}
+  .heroGrid>div{min-width:0!important;max-width:100%!important}
+  .hero h1{font-size:clamp(42px,13vw,64px)!important;line-height:1.02!important;overflow-wrap:normal!important}
+  .hero p{max-width:100%!important;font-size:16px!important;line-height:1.6!important}
+  .heroVisual{width:100%!important;max-width:100%!important;padding:7px!important;border-radius:22px!important;overflow:hidden!important}
+  .heroVisual img{width:100%!important;max-width:100%!important;height:auto!important;aspect-ratio:4/3!important;object-fit:cover!important;object-position:center!important;border-radius:16px!important}
+  .heroVisual .photoCaption{max-width:calc(100% - 20px)!important;margin:-54px 10px 10px!important;font-size:13px!important}
+  #galeria{width:100%!important;overflow:hidden!important}
+  #galeria .cards{width:100%!important;grid-template-columns:minmax(0,1fr)!important}
+  #galeria .card{width:100%!important;min-width:0!important;overflow:hidden!important}
+  #galeria .card img,#galeria .card:first-child img{width:100%!important;height:auto!important;aspect-ratio:16/10!important;object-fit:cover!important;object-position:center!important}
+}
+@media(max-width:420px){
+  .wrap{padding-left:16px!important;padding-right:16px!important}
+  .hero{padding-top:40px!important}
+  .heroVisual img{aspect-ratio:5/4!important}
+  .heroVisual .photoCaption{font-size:12px!important;padding:10px 12px!important}
+}
+</style></head>
 <body>
 <div class="top"><div class="wrap"><span>Proyecto FarmaJovi · actualmente en pausa</span><span>Información referencial</span></div></div>
 <header class="nav"><div class="wrap navin"><a class="brand" href="#inicio"><img src="logo-farmajovi.png" alt="Logo FarmaJovi"><span>Farma<span style="color:var(--teal)">Jovi</span></span></a><nav class="links" aria-label="Navegación"><a href="#servicios">Servicios</a><a href="#precios">Precios</a><a href="#faq">Preguntas frecuentes</a><a href="#orientacion">Orientación</a></nav><a class="btn primary" href="https://wa.me/56942748056?text=Hola%20FarmaJovi,%20quisiera%20hacer%20una%20consulta" target="_blank" rel="noopener">WhatsApp ↗</a></div></header>
