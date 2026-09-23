@@ -1,4 +1,36 @@
-<style id="farmajovi-heading-structure-fix">
+<style id="farmajovi-closure-polish">
+/* Cierre visual: pie, reseñas, ambiente y precios */
+.footer{padding:38px 0!important}
+.footer .foot{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;gap:24px!important;align-items:end!important}
+.footer .brand{font-size:22px!important}
+.footer .brand img{width:42px!important;height:42px!important}
+.footer p{margin:12px 0 0!important;font-size:15px!important;line-height:1.55!important;color:#ffe8eb!important}
+.footer small{display:block!important;margin-top:18px!important;color:#f6cdd4!important;font-size:13px!important}
+.testimonials .reviewFooter{margin-top:18px!important;padding:16px 0 0!important;display:flex!important;justify-content:space-between!important;align-items:center!important;gap:16px!important;border-top:1px solid #ecd9de!important}
+.testimonials .reviewFooter .btn{min-height:46px!important;padding:12px 18px!important;font-size:14px!important}
+.testimonials .reviewNote{margin:12px 0 0!important;font-size:12px!important;line-height:1.5!important;color:#896b75!important}
+.youtubeAmbience{padding:58px 0!important}
+.youtubeAmbienceCard{grid-template-columns:minmax(0,1.05fr) minmax(280px,.95fr)!important;gap:22px!important;padding:16px!important;align-items:center!important}
+.youtubeAmbienceCopy{padding:12px 16px!important}
+.youtubeAmbienceCopy h3{margin:0 0 12px!important;font-size:clamp(25px,2.5vw,34px)!important;line-height:1.13!important;letter-spacing:-.04em!important}
+.youtubeAmbienceCopy p{margin:0 0 20px!important;font-size:16px!important;line-height:1.6!important}
+.youtubeAmbienceCopy .btn{min-height:48px!important;padding:13px 20px!important}
+.youtubeAmbienceNote{margin-top:14px!important;line-height:1.45!important}
+body #precios .mainCard{padding:38px 44px!important}
+body #precios .mainCard .btn{margin-top:4px!important}
+@media(max-width:760px){
+  .footer{padding:32px 0!important}
+  .footer .foot{grid-template-columns:1fr!important;gap:12px!important}
+  .footer small{margin-top:10px!important}
+  .testimonials .reviewFooter{align-items:stretch!important;flex-direction:column!important;gap:10px!important}
+  .testimonials .reviewFooter .btn{width:100%!important}
+  .youtubeAmbience{padding:48px 0!important}
+  .youtubeAmbienceCard{grid-template-columns:1fr!important;gap:14px!important;padding:12px!important}
+  .youtubeAmbienceCopy{padding:8px 6px 6px!important}
+  .youtubeAmbienceCopy h3{font-size:26px!important}
+  body #precios .mainCard{padding:28px!important}
+}
+</style><style id="farmajovi-heading-structure-fix">
 /* Encabezados dentro de sectionHead y turnosHeader */
 body .sectionHead .kicker{display:block!important;margin:0 0 12px!important;color:#b15468!important;font-size:13px!important;line-height:1.2!important;letter-spacing:.1em!important;font-weight:850!important;text-transform:uppercase!important}
 body .sectionHead h2{max-width:20ch!important;margin:0 0 16px!important;color:#30232b!important;font-size:clamp(30px,3.25vw,46px)!important;line-height:1.08!important;letter-spacing:-.05em!important;font-weight:850!important}
