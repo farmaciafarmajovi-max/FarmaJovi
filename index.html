@@ -38,7 +38,18 @@ img{max-width:100%;height:auto}
 @media(max-width:380px){.links{gap:7px!important}.links a{font-size:11px!important}.nav .primary{font-size:11px!important;padding:9px 10px!important}.hero h1{font-size:44px!important}.chatbox{height:calc(100vh - 18px)!important}.messages table{min-width:480px!important}}
 </style><style>
 .newsSection{padding:clamp(56px,7vw,96px) 0;background:#fff7f8;border-top:1px solid #f0d7dc;border-bottom:1px solid #f0d7dc}.newsSection .sectionHead{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,.72fr);gap:32px;align-items:end;margin-bottom:28px}.newsGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}.newsCard{background:#fff;border:1px solid #ead1d7;border-radius:24px;overflow:hidden;box-shadow:0 12px 32px rgba(92,38,54,.08);display:flex;flex-direction:column;min-height:280px}.newsCard img{width:100%;height:170px;object-fit:cover;display:block}.newsCard__body{padding:22px;display:flex;flex-direction:column;gap:10px;flex:1}.newsTag{font-size:.76rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#b64f69}.newsCard h3{margin:0;color:#2b2025;font-size:1.25rem;line-height:1.15}.newsCard p{margin:0;color:#654f57;line-height:1.55}.newsCard .btn{margin-top:auto;align-self:flex-start}.newsActions{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto}.newsActions .btn{margin-top:0}.newsCard--instagram{background:linear-gradient(145deg,#fff,#fff0f3)}.newsIcon{width:46px;height:46px;border-radius:15px;background:#f8dbe2;color:#a8445e;display:grid;place-items:center;font-size:1.7rem;font-weight:700}.newsEmpty{grid-column:1/-1;color:#765e66;background:#fff;border:1px dashed #dfb9c3;border-radius:18px;padding:20px}.newsDate{font-size:.82rem;color:#927780}@media(max-width:800px){.newsSection .sectionHead{grid-template-columns:1fr;gap:12px}.newsGrid{grid-template-columns:1fr}.newsCard{min-height:0}}
-</style></head>
+</style>
+<style id="nav-overflow-fix">
+/* Navegación móvil sin barras ni flechas nativas */
+@media(max-width:800px){
+  .nav,.navin{overflow:visible!important}
+  .navin{height:auto!important;min-height:68px!important;flex-wrap:wrap!important;align-content:center!important}
+  .links{order:3!important;flex:1 0 100%!important;width:100%!important;min-width:0!important;display:flex!important;flex-wrap:wrap!important;align-items:center!important;justify-content:center!important;gap:8px 14px!important;overflow:visible!important;white-space:normal!important;scrollbar-width:none!important}
+  .links::-webkit-scrollbar{display:none!important;width:0!important;height:0!important}
+  .links a{display:inline-flex!important;white-space:nowrap!important}
+}
+</style>
+</head>
 <body>
 <div class="top"><div class="wrap"><span>Proyecto FarmaJovi · actualmente en pausa</span><span>Información referencial</span></div></div>
 <header class="nav"><div class="wrap navin"><a class="brand" href="#inicio"><img src="logo-farmajovi.png" alt="Logo FarmaJovi"><span>Farma<span style="color:var(--teal)">Jovi</span></span></a><nav class="links" aria-label="Navegación"><a href="#servicios">Servicios</a><a href="#precios">Precios</a><a href="#faq">Preguntas frecuentes</a><a href="#orientacion">Orientación</a></nav><a class="btn primary" href="https://wa.me/56942748056?text=Hola%20FarmaJovi,%20quisiera%20hacer%20una%20consulta" target="_blank" rel="noopener">WhatsApp ↗</a></div></header>
