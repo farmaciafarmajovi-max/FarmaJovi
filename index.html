@@ -1,4 +1,17 @@
-<style id="farmajovi-live-visual-fix">
+<style id="farmajovi-card-repair">
+/* Tarjetas FarmaJovi: iconos compactos y separación consistente */
+.feature .cards,#servicios .cards,#galeria .cards{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:20px!important}
+.info{display:grid!important;gap:20px!important;align-content:start!important}
+.info .card{margin:0!important}
+.card .icon{width:44px!important;height:44px!important;min-width:44px!important;display:grid!important;place-items:center!important;align-self:flex-start!important;margin:0 0 18px!important;padding:0!important;border-radius:13px!important;background:#fae8ea!important;color:#ad5364!important;font-size:20px!important;line-height:1!important}
+.feature .card .icon{background:#fae8ea!important;color:#ad5364!important}
+.card .icon + h3{margin-top:0!important}
+#galeria .cards{grid-template-columns:1.25fr .875fr .875fr!important;gap:18px!important}
+@media(max-width:800px){
+ .feature .cards,#servicios .cards,#galeria .cards{grid-template-columns:1fr!important;gap:16px!important}
+ .info{gap:16px!important}
+}
+</style><style id="farmajovi-live-visual-fix">
 /* Ajuste visual final FarmaJovi */
 #turnos{background:linear-gradient(180deg,#fff7f8 0%,#fffafa 100%)!important;border-top:1px solid #edcbd3!important;border-bottom:1px solid #edcbd3!important;padding:72px 0!important}
 #turnos .turnosFilters{display:flex!important;flex-wrap:wrap!important;gap:12px!important;margin:22px 0 28px!important}
