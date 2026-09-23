@@ -1,4 +1,25 @@
-<style id="farmajovi-turnos-typography">
+<style id="farmajovi-card-system">
+/* Sistema editorial coherente para tarjetas FarmaJovi */
+body #servicios .card,body #precios .info .card,body .feature .card,body .officialCard,body .newsCard,body .testimonialCard{border-radius:20px!important;padding:26px!important;box-shadow:0 14px 30px rgba(83,39,51,.08)!important}
+body #servicios .card h3,body #precios .info .card h3,body .feature .card h3,body .officialCard h3,body .newsCard h3,body .testimonialCard h3{margin:0 0 9px!important;color:#30232b!important;font-size:20px!important;line-height:1.22!important;letter-spacing:-.03em!important;font-weight:850!important}
+body #servicios .card p,body #precios .info .card p,body .feature .card p,body .officialCard p,body .newsCard p,body .testimonialCard p{margin:0!important;color:#68515a!important;font-size:15px!important;line-height:1.62!important}
+body .feature .card .icon,body #servicios .card .icon,body #precios .info .card .icon{margin:0 0 16px!important}
+body .officialCard .officialIcon,body .newsCard .newsIcon{margin:0 0 17px!important}
+body .officialLinks,body .newsActions{gap:9px!important;margin-top:18px!important}
+body .officialLinks a,body .newsActions .btn,body .newsCard .btn{font-size:13px!important;font-weight:850!important;line-height:1.2!important}
+body .testimonialCard{gap:9px!important}
+body .testimonialCard strong{color:#30232b!important;font-size:15px!important;font-weight:850!important}
+body .testimonialCard .reviewSource,body .testimonialCard small{font-size:12px!important;line-height:1.4!important;color:#95757f!important}
+body #galeria .card{border-radius:20px!important;box-shadow:0 14px 30px rgba(83,39,51,.08)!important}
+body #galeria .card h3{margin:20px 0 7px!important;color:#30232b!important;font-size:20px!important;line-height:1.22!important;letter-spacing:-.03em!important;font-weight:850!important}
+body #galeria .card p{padding-bottom:24px!important;color:#68515a!important;font-size:15px!important;line-height:1.6!important}
+body #precios .mainCard{border-radius:26px!important;padding:44px!important}
+body #precios .mainCard h2{margin:10px 0 14px!important;font-size:clamp(29px,3.3vw,42px)!important;line-height:1.08!important;letter-spacing:-.05em!important}
+body #precios .mainCard p{font-size:16px!important;line-height:1.65!important}
+body #faq details{padding:20px 22px!important;border-radius:16px!important}
+body #faq summary{font-size:16px!important;font-weight:850!important;color:#30232b!important}
+@media(max-width:700px){body #servicios .card,body #precios .info .card,body .feature .card,body .officialCard,body .newsCard,body .testimonialCard{padding:22px!important}body #servicios .card h3,body #precios .info .card h3,body .feature .card h3,body .officialCard h3,body .newsCard h3,body .testimonialCard h3{font-size:19px!important}body #precios .mainCard{padding:28px!important}}
+</style><style id="farmajovi-turnos-typography">
 /* Jerarquía editorial para tarjetas de turno */
 #turnosLiveGrid .turnoCard{font-size:15px!important;line-height:1.55!important}
 #turnosLiveGrid h3{font-size:19px!important;line-height:1.2!important;letter-spacing:-.02em!important;font-weight:850!important}
