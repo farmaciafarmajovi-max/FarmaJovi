@@ -276,3 +276,21 @@ document.addEventListener('click',e=>{const b=e.target.closest('#turnos .turnosF
 html body #turnos #turnosLiveGrid .turnoMap{display:block!important;height:auto!important;min-height:0!important;padding:0!important;margin:0 0 16px!important;background:transparent!important;border:0!important;box-shadow:none!important;overflow:visible!important}
 html body #turnos #turnosLiveGrid .turnoMap a{display:inline!important;height:auto!important;padding:0!important;background:transparent!important;color:#9e3f59!important}
 </style>
+
+<style id="farmajovi-news-order-and-turnos-size">
+/* Orden correcto: noticias antes de farmacias de turno */
+#noticias{position:relative}
+/* Tarjetas de turno más compactas y proporcionadas */
+html body #turnosLiveGrid{grid-template-columns:repeat(auto-fit,minmax(270px,1fr))!important;gap:16px!important}
+html body #turnosLiveGrid .turnoCard{padding:20px!important;border-radius:20px!important;box-shadow:0 8px 20px rgba(117,45,67,.07)!important}
+html body #turnosLiveGrid .turnoCard h3{font-size:18px!important}
+html body #turnosLiveGrid .turnoMap{margin-bottom:12px!important}
+html body #turnosLiveGrid .turnoMap a{font-size:13px!important}
+html body #turnosLiveGrid .turnoBody{gap:9px!important}
+html body #turnosLiveGrid .turnoMeta{font-size:14px!important;line-height:1.4!important}
+html body #turnosLiveGrid .turnoActions{margin-top:14px!important;padding-top:14px!important}
+@media(max-width:800px){html body #turnosLiveGrid{grid-template-columns:1fr!important;gap:14px!important}html body #turnosLiveGrid .turnoCard{padding:18px!important}}
+</style>
+<script id="farmajovi-news-order-fix">
+(()=>{const move=()=>{const n=document.getElementById('noticias'),t=document.getElementById('turnos');if(n&&t&&t.parentNode)n.parentNode.insertBefore(n,t)};if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',move,{once:true});else move()})();
+</script>
