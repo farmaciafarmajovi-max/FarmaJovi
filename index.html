@@ -323,3 +323,8 @@ html body #turnosLiveGrid .turnoActions a{min-height:40px!important;padding:9px 
 <script id="farmajovi-verified-order-fix">
 (()=>{const move=()=>{const n=document.getElementById('noticias'),t=document.getElementById('turnos'),m=document.querySelector('main');if(n&&t&&m&&n.parentNode!==m){m.insertBefore(n,t);return true}return !!(n&&t&&m&&n.parentNode===m)};let tries=0;const obs=new MutationObserver(()=>{if(move())obs.disconnect()});obs.observe(document.documentElement,{childList:true,subtree:true});const timer=setInterval(()=>{if(move()||++tries>80){clearInterval(timer);obs.disconnect()}},250);move()})();
 </script>
+
+<style id="farmajovi-turnos-half-width">
+@media(min-width:801px){html body #turnosLiveGrid{grid-template-columns:repeat(2,minmax(0,1fr))!important;max-width:780px!important;margin-left:0!important;margin-right:auto!important}html body #turnosLiveGrid .turnoCard{width:100%!important}}
+@media(max-width:800px){html body #turnosLiveGrid{grid-template-columns:1fr!important}}
+</style>
