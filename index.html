@@ -304,3 +304,22 @@ html body #turnosLiveGrid .turnoBody{margin-top:12px!important;gap:8px!important
 <script id="farmajovi-final-news-placement">
 (()=>{const move=()=>{const n=document.getElementById('noticias'),t=document.getElementById('turnos'),main=document.querySelector('main');if(n&&t&&main){main.insertBefore(n,t);return true}return false};let tries=0;const timer=setInterval(()=>{if(move()||++tries>40)clearInterval(timer)},250);window.addEventListener('load',()=>setTimeout(move,100));})();
 </script>
+
+<style id="farmajovi-verified-layout-fix">
+/* Corrección final: noticias dentro del contenido y tarjetas compactas */
+html body #turnosLiveGrid{display:grid!important;grid-template-columns:repeat(auto-fit,minmax(270px,1fr))!important;gap:18px!important}
+html body #turnosLiveGrid .turnoCard{display:block!important;padding:18px!important;min-height:0!important;height:auto!important;border-radius:18px!important}
+html body #turnosLiveGrid .turnoCard__head,html body #turnosLiveGrid .turnoTop{display:flex!important;align-items:flex-start!important;justify-content:space-between!important;gap:10px!important;margin:0 0 10px!important;padding:0!important}
+html body #turnosLiveGrid .turnoCard__head h3,html body #turnosLiveGrid .turnoTop h3{margin:0!important;font-size:18px!important;line-height:1.25!important}
+html body #turnosLiveGrid .turnoBadge,html body #turnosLiveGrid .turnoStatus{margin:0!important;padding:6px 10px!important;font-size:12px!important;white-space:nowrap!important}
+html body #turnosLiveGrid .turnoMap{display:block!important;height:auto!important;min-height:0!important;margin:0 0 10px!important;padding:0!important;background:transparent!important;border:0!important}
+html body #turnosLiveGrid .turnoMap a{display:inline!important;font-size:13px!important;line-height:1.35!important;padding:0!important;background:transparent!important}
+html body #turnosLiveGrid .turnoBody{display:grid!important;gap:8px!important;padding:0!important;margin:0!important}
+html body #turnosLiveGrid .turnoMeta,html body #turnosLiveGrid .turnoPlace,html body #turnosLiveGrid .turnoAddress,html body #turnosLiveGrid .turnoPhone,html body #turnosLiveGrid .turnoHours{margin:0!important;font-size:14px!important;line-height:1.4!important}
+html body #turnosLiveGrid .turnoActions{display:flex!important;gap:8px!important;margin:14px 0 0!important;padding:12px 0 0!important;border-top:1px solid #f1dce1!important}
+html body #turnosLiveGrid .turnoActions a{min-height:40px!important;padding:9px 12px!important;font-size:13px!important}
+@media(max-width:800px){html body #turnosLiveGrid{grid-template-columns:1fr!important;gap:14px!important}html body #turnosLiveGrid .turnoCard{padding:16px!important}}
+</style>
+<script id="farmajovi-verified-order-fix">
+(()=>{const move=()=>{const n=document.getElementById('noticias'),t=document.getElementById('turnos'),m=document.querySelector('main');if(n&&t&&m&&n.parentNode!==m){m.insertBefore(n,t);return true}return !!(n&&t&&m&&n.parentNode===m)};let tries=0;const obs=new MutationObserver(()=>{if(move())obs.disconnect()});obs.observe(document.documentElement,{childList:true,subtree:true});const timer=setInterval(()=>{if(move()||++tries>80){clearInterval(timer);obs.disconnect()}},250);move()})();
+</script>
