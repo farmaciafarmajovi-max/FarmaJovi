@@ -294,3 +294,13 @@ html body #turnosLiveGrid .turnoActions{margin-top:14px!important;padding-top:14
 <script id="farmajovi-news-order-fix">
 (()=>{const move=()=>{const n=document.getElementById('noticias'),t=document.getElementById('turnos');if(n&&t&&t.parentNode)n.parentNode.insertBefore(n,t)};if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',move,{once:true});else move()})();
 </script>
+
+<style id="farmajovi-final-turno-news-fix">
+html body #turnosLiveGrid .turnoCard{padding:18px!important;border-radius:18px!important}
+html body #turnosLiveGrid .turnoMap{margin:0!important;padding:0!important;height:auto!important;min-height:0!important;display:block!important;background:transparent!important}
+html body #turnosLiveGrid .turnoMap a{line-height:1.35!important}
+html body #turnosLiveGrid .turnoBody{margin-top:12px!important;gap:8px!important}
+</style>
+<script id="farmajovi-final-news-placement">
+(()=>{const move=()=>{const n=document.getElementById('noticias'),t=document.getElementById('turnos'),main=document.querySelector('main');if(n&&t&&main){main.insertBefore(n,t);return true}return false};let tries=0;const timer=setInterval(()=>{if(move()||++tries>40)clearInterval(timer)},250);window.addEventListener('load',()=>setTimeout(move,100));})();
+</script>
