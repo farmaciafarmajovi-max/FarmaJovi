@@ -18,3 +18,10 @@
  },true);
 })();
 </script>
+
+<script id="farmajovi-auth-hash-repair">
+(()=>{
+ const raw=location.hash||''; const parts=raw.split('#').filter(x=>x.includes('access_token='));
+ if(parts.length>1){const latest=parts[parts.length-1]; history.replaceState(null,'',location.pathname+'#'+latest); location.reload();}
+})();
+</script>
