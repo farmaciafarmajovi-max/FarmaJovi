@@ -328,3 +328,13 @@ html body #turnosLiveGrid .turnoActions a{min-height:40px!important;padding:9px 
 @media(min-width:801px){html body #turnosLiveGrid{grid-template-columns:repeat(2,minmax(0,1fr))!important;max-width:780px!important;margin-left:0!important;margin-right:auto!important}html body #turnosLiveGrid .turnoCard{width:100%!important}}
 @media(max-width:800px){html body #turnosLiveGrid{grid-template-columns:1fr!important}}
 </style>
+
+<style id="farmajovi-new-storefront-visuals">
+/* Nueva identidad visual de la farmacia: imágenes reales del local */
+.heroVisual img{object-position:center center!important}
+#galeria .card img{object-position:center!important}
+@media(max-width:800px){.heroVisual img{height:clamp(280px,72vw,390px)!important}}
+</style>
+<script id="farmajovi-new-storefront-assets">
+(()=>{const hero=document.querySelector('.heroVisual img');if(hero){hero.src='farmajovi-storefront.jpg';hero.alt='Interior moderno y luminoso de FarmaJovi';}const gallery=document.querySelectorAll('#galeria .card img');if(gallery[0]){gallery[0].src='farmajovi-storefront.jpg';gallery[0].alt='Interior de FarmaJovi';}if(gallery[1]){gallery[1].src='farmajovi-interior.jpg';gallery[1].alt='Fachada renovada de FarmaJovi bajo cielo azul';}})();
+</script>
