@@ -1,0 +1,25 @@
+{
+  "name": "FarmaJovi | Tu farmacia cercana",
+  "short_name": "FarmaJovi",
+  "description": "Farmacia, salud y bienestar en La Serena.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#fffafa",
+  "theme_color": "#c96879",
+  "lang": "es-CL",
+  "icons": [
+    {
+      "src": "logo-farmajovi.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "logo-farmajovi.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
