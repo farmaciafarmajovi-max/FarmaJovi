@@ -1,5 +1,5 @@
-const CACHE='farmajovi-v2';
-const CORE=['./','./index.html','./manifest.webmanifest','./logo-farmajovi-header.png'];
+const CACHE='farmajovi-v3';
+const CORE=['./','./index.html','./manifest.webmanifest','./logo-farmajovi-header.jpg'];
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE)).then(()=>self.skipWaiting()))});
 self.addEventListener('activate',event=>{event.waitUntil(self.clients.claim())});
 self.addEventListener('fetch',event=>{if(event.request.method!=='GET')return;event.respondWith(caches.match(event.request).then(cached=>cached||fetch(event.request).then(response=>{const copy=response.clone();caches.open(CACHE).then(cache=>cache.put(event.request,copy));return response}).catch(()=>caches.match('./index.html'))))});
