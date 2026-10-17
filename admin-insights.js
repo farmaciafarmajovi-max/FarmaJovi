@@ -32,7 +32,7 @@
   };
   const friendly=question=>{
     const e=classify(question);
-    const labels={view:'Vista de página',price:'Búsqueda de precios',wa:'Clic en WhatsApp',chat:'Consulta del chat',news_open:'Apertura de noticia',price_list:'Listado completo',installed:'Instalación confirmada',install_click:'Botón instalar',instagram:'Enlace Instagram'};
+    const labels={view:'Vista de página',price:'Búsqueda de precios',wa:'Clic en WhatsApp',chat:'Consulta del chat',news_open:'Apertura de noticia',price_list:'Listado completo',installed:'Instalación confirmada',install_click:'Botón instalar',instagram:'Enlace Instagram',sernac_comparator:'Comparador de anticonceptivos SERNAC'};
     if(e.type==='keyword')return 'Palabra: '+e.keyword;
     if(e.type==='chat')return 'Chat · '+({precio:'Precio',stock:'Disponibilidad',ubicacion:'Ubicación',general:'General'}[e.category]||'General');
     return labels[e.type]||'Otro acceso';
@@ -44,7 +44,7 @@
     panel.prepend(controls);
     const extra=document.createElement('div');extra.className='metrics';extra.innerHTML='<div class="metric"><b id="viewTotal">—</b><span>Vistas de página</span><small id="viewChange"></small></div><div class="metric"><b id="sessionTotal">—</b><span>Sesiones medidas</span></div><div class="metric"><b id="newsTotal">0</b><span>Aperturas de noticias</span></div><div class="metric"><b id="installTotal">0</b><span>Instalaciones confirmadas</span></div>';
     controls.after(extra);
-    const coverage=document.createElement('div');coverage.className='panel';coverage.innerHTML='<h2>Procedencia y dispositivos</h2><div class="insightColumns"><div><h3>Origen de las vistas</h3><div id="sourceSummary"></div></div><div><h3>Dispositivos</h3><div id="deviceSummary"></div></div></div><p class="muted">Sesiones no equivale a personas únicas. Visitas, origen e instalaciones se miden desde la actualización del 17-10-2026; antes de esa fecha sólo había interacciones. Los bloqueadores o preferencias de privacidad pueden impedir el registro.</p><h3>Presencia en Google</h3><p>Los clics, impresiones y posición en Google se consultan en Search Console; este panel aún no está conectado a esos datos.</p><a href="https://search.google.com/search-console/" target="_blank" rel="noopener">Abrir Search Console ↗</a>';
+    const coverage=document.createElement('div');coverage.className='panel';coverage.innerHTML='<h2>Procedencia y dispositivos</h2><div class="insightColumns"><div><h3>Origen de las vistas</h3><div id="sourceSummary"></div></div><div><h3>Dispositivos</h3><div id="deviceSummary"></div></div></div><p class="muted">Sesiones no equivale a personas únicas. Visitas, origen e instalaciones se miden desde la actualización del 17-10-2026; antes de esa fecha sólo había interacciones. Los bloqueadores o preferencias de privacidad pueden impedir el registro.</p><h3>Herramientas de la comunidad</h3><p id="sernacAccesses" role="status"></p><h3>Presencia en Google</h3><p>Los clics, impresiones y posición en Google se consultan en Search Console; este panel aún no está conectado a esos datos.</p><a href="https://search.google.com/search-console/" target="_blank" rel="noopener">Abrir Search Console ↗</a>';
     extra.after(coverage);
     const select=document.getElementById('insightsPeriod'),range=document.getElementById('insightsRange'),exclude=document.getElementById('excludeMyTests');
     try{exclude.checked=localStorage.getItem('fj-exclude-tests')==='1';}catch{}
@@ -79,6 +79,7 @@
         document.getElementById('viewChange').textContent='Medición nueva; aún no hay un período completo comparable.';
         const distribution=(id,values)=>{document.getElementById(id).innerHTML=Object.entries(values).sort((a,b)=>b[1]-a[1]).map(([label,n])=>'<div class="keywordItem"><span>'+escape(label)+'</span><strong>'+n+'</strong></div>').join('')||'<p class="emptyNote">Todavía no hay vistas registradas en este período.</p>';};
         distribution('sourceSummary',data.sources);distribution('deviceSummary',data.devices);
+        document.getElementById('sernacAccesses').textContent='Accesos al comparador de anticonceptivos SERNAC: '+(data.counts.sernac_comparator||0)+'. Se cuenta el clic de salida; no las búsquedas realizadas en SERNAC.';
         const max=Math.max(1,...Object.values(data.categories));
         document.getElementById('bars').innerHTML=Object.entries({precio:'Precio',stock:'Stock',ubicacion:'Ubicación',general:'General'}).map(([key,label])=>'<div class="bar"><label>'+label+' <b>'+data.categories[key]+'</b></label><i style="width:'+Math.round(data.categories[key]/max*65)+'%"></i></div>').join('');
         document.getElementById('keywords').innerHTML=Object.entries(data.keywords).sort((a,b)=>b[1]-a[1]).slice(0,20).map(([keyword,n])=>'<div class="keywordItem"><span>'+escape(keyword)+'</span><strong>'+n+'</strong></div>').join('')||'<p class="emptyNote">Sin palabras registradas en este período.</p>';

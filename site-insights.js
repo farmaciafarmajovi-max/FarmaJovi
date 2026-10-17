@@ -45,6 +45,7 @@
   document.addEventListener('click', event => {
     const target = event.target.closest('a,button'); if (!target) return;
     if (target.id==='buscarPrecioFijo') price();
+    if (target.id==='sernacComparatorLink') log('v2|sernac_comparator');
     if (target.id==='installAppBtn') log('v2|install_click');
     if (target.matches('a')) {
       let url; try { url=new URL(target.href,location.href); } catch { return; }
