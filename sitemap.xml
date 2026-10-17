@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://farmaciafarmajovi-max.github.io/FarmaJovi/</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -24,4 +24,9 @@
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
+  <url><loc>https://farmaciafarmajovi-max.github.io/FarmaJovi/noticia.html?id=410bca90-ce91-4c52-af7d-6368cb57a28a</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://farmaciafarmajovi-max.github.io/FarmaJovi/noticia.html?id=80f246bd-6608-4cec-bec6-863655d220d4</loc><lastmod>2026-09-23</lastmod></url>
+  <url><loc>https://farmaciafarmajovi-max.github.io/FarmaJovi/noticia.html?id=f42a6b73-ae3c-40e2-b8d2-a91f194efba8</loc><lastmod>2026-09-23</lastmod></url>
 </urlset>
+
+
