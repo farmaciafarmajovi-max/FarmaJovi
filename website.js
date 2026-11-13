@@ -25,7 +25,7 @@
   nav.addEventListener('click',event=>{if(event.target.closest('a'))closeMenu();});
   document.addEventListener('keydown',event=>{if(event.key==='Escape'){if(nav.classList.contains('is-open')){closeMenu();menu.focus();}closeChat();}});
   const observer = new IntersectionObserver(entries=>{entries.forEach(entry=>{if(!entry.isIntersecting)return;nav.querySelectorAll('a').forEach(a=>{if(a.hash==='#'+entry.target.id)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');});});},{rootMargin:'-20% 0px -60% 0px'});
-  ['servicios','precios','noticias','turnos'].forEach(id=>observer.observe(document.getElementById(id)));
+  ['inicio','servicios','precios','noticias','turnos'].forEach(id=>observer.observe(document.getElementById(id)));
 
   const chat = document.getElementById('chatbox'), chatButton = document.getElementById('chatBtn');
   function syncChat(){const open=chat.classList.contains('open');chat.inert=!open;chatButton.setAttribute('aria-expanded',String(open));chatButton.setAttribute('aria-label',open?'Cerrar asistente FarmaJovi':'Abrir asistente FarmaJovi');if(open)document.getElementById('chatInput').focus();}
