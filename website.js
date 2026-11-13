@@ -74,47 +74,63 @@
   }
   loadNews();
 
-  // A single Farmanet loader replaces the former competing render/filter scripts.
-  let pharmacies=[],selectedCity='all';
+  // La Serena has continuous 24-hour pharmacies, not a daily rotating duty roster.
+  // Directory telephone numbers are attributed separately from official address/hour records.
+  const serena24h=[
+    {local_id:'3580',local_nombre:'CRUZ VERDE',comuna_nombre:'LA SERENA',local_direccion:'Calle Gregorio Cordovez 510 (esquina Avenida Balmaceda)',local_telefono:'+56 51 222 3403',local_lat:'-29.903190742432812',local_lng:'-71.24985700383696',continuous:true,phoneSource:'https://www.mercantil.com/empresa/farmacias-cruz-verde/la-serena/300095584/esp/'},
+    {local_id:'5990',local_nombre:'FARMACIA DR. AMIGO',comuna_nombre:'LA SERENA',local_direccion:'Avenida Balmaceda 438 (cercano a calle Gregorio Cordovez)',local_telefono:'+56 9 6306 0175',local_lat:'-29.903139589695808',local_lng:'-71.24986769830777',continuous:true,phoneSource:'https://farmacias24.cl/la-serena/'}
+  ];
+  let pharmacies=[],selectedCity='all',dutyState='loading';
   const norm=value=>String(value??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim();
   const val=(row,...keys)=>{for(const key of keys){if(row[key]!=null&&String(row[key]).trim())return String(row[key]).trim();}return '';};
   const today=()=>new Intl.DateTimeFormat('en-CA',{timeZone:'America/Santiago',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
   const grid=document.getElementById('turnosLiveGrid');
   const emptyTurnos = message => {const p=text('p',message+' ','turnosEmpty');p.append(link('Consultar fuente oficial ↗','https://seremienlinea.minsal.cl/asdigital/index.php?mfarmacias'));grid.replaceChildren(p);};
   function renderTurnos(){
-    const rows=pharmacies.filter(row=>selectedCity==='all'||norm(val(row,'comuna_nombre','comuna'))===selectedCity);
+    const rows=selectedCity==='la serena'?serena24h:selectedCity==='coquimbo'?pharmacies:[...serena24h,...pharmacies];
     grid.replaceChildren();
-    if(!rows.length){emptyTurnos('No hay registros vigentes para esta comuna en la respuesta de Farmanet. Confirma en el buscador oficial.');return;}
+    const context=document.getElementById('pharmacyContext');
+    if(context)context.textContent=selectedCity==='la serena'?'La Serena · 2 farmacias con atención continua 24 horas. No corresponden a un turno rotativo diario.':selectedCity==='coquimbo'?'Coquimbo · farmacia de turno según la fecha publicada en Farmanet.':'La Serena: atención continua 24 horas · Coquimbo: turno diario de Farmanet.';
     rows.forEach(row=>{
       const card=document.createElement('article');card.className='turnoCard';
-      const heading=document.createElement('div');heading.className='turnoTop';heading.append(text('h3',val(row,'local_nombre','nombre')||'Farmacia'),text('span','De turno','turnoStatus'));
+      const heading=document.createElement('div');heading.className='turnoTop';heading.append(text('h3',val(row,'local_nombre','nombre')||'Farmacia'),text('span',row.continuous?'24 horas':'De turno','turnoStatus'));
       const city=val(row,'comuna_nombre','comuna'),address=val(row,'local_direccion','direccion'),phone=val(row,'local_telefono','telefono');
-      const maps='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent([address,city].filter(Boolean).join(', '));
+      const destination=row.continuous&&row.local_lat&&row.local_lng?[row.local_lat,row.local_lng].join(','):[address,city].filter(Boolean).join(', ');
+      const maps='https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(destination);
+      const mapView='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent([val(row,'local_nombre','nombre'),address,city].filter(Boolean).join(', '));
       const content=document.createElement('div');content.className='turnoBody';
       const meta=(name,label,value)=>{const item=document.createElement('div');item.className='turnoMeta';const pic=document.createElement('span');pic.className='line-icon';pic.setAttribute('aria-hidden','true');pic.innerHTML=icon(name);const copy=document.createElement('span');copy.append(text('b',label),document.createElement('br'),document.createTextNode(value));item.append(pic,copy);return item;};
       const opening=val(row,'funcionamiento_hora_apertura','hora_apertura'),closing=val(row,'funcionamiento_hora_cierre','hora_cierre');
       const hour=value=>/^\d{2}:\d{2}/.test(value)?value.slice(0,5):value;
-      content.append(meta('pin',city,address||'Dirección no publicada'),meta('clock','Horario de turno',opening&&closing?hour(opening)+' — '+hour(closing)+' hrs':'Consultar horario en la fuente oficial'));
+      content.append(meta('pin',city,address||'Dirección no publicada'),meta('clock',row.continuous?'Horario de atención':'Horario de turno',row.continuous?'Atención continua · 24 horas, todos los días':opening&&closing?hour(opening)+' — '+hour(closing)+' hrs':'Consultar horario en la fuente oficial'));
       if(phone)content.append(meta('phone','Teléfono',phone));
-      content.append(text('small','Fecha del registro: '+val(row,'fecha')));
+      if(row.continuous){content.append(text('small','Confirma la atención y el teléfono antes de trasladarte. No es una verificación de apertura en tiempo real.'));}
+      else content.append(text('small','Fecha del registro: '+val(row,'fecha')));
       const actions=document.createElement('div');actions.className='turnoActions';
       if(phone){const tel=text('a','Llamar','btn primary');tel.href='tel:'+phone.replace(/[^\d+]/g,'');actions.append(tel);}
       actions.append(link('Cómo llegar ↗',maps,'btn '+(phone?'soft':'primary')));
-      card.append(heading,content,actions);grid.append(card);
+      card.append(heading,link('Ver local en Google Maps ↗',mapView,'turnoMap'),content,actions);
+      if(row.continuous){const sources=document.createElement('div');sources.className='officialLinks pharmacy-sources';sources.append(link('Dirección y horario: Farmanet ↗','https://seremienlinea.minsal.cl/asdigital/index.php?mfarmacias'),link('Teléfono: directorio público ↗',row.phoneSource));card.append(sources);}
+      grid.append(card);
     });
+    if(selectedCity!=='la serena'&&!pharmacies.length){
+      const message=dutyState==='loading'?'Consultando el turno de Coquimbo…':dutyState==='error'?'No fue posible consultar el turno de Coquimbo. Revisa el buscador oficial.':'Farmanet no devolvió un turno con fecha de hoy para Coquimbo. Confirma en el buscador oficial.';
+      const notice=text('p',message+' ','turnosEmpty');notice.append(link('Consultar fuente oficial ↗','https://seremienlinea.minsal.cl/asdigital/index.php?mfarmacias'));grid.append(notice);
+    }
   }
   document.querySelector('.turnosFilters').addEventListener('click',event=>{const button=event.target.closest('[data-city]');if(!button)return;selectedCity=button.dataset.city;document.querySelectorAll('.turnosFilter').forEach(el=>{el.classList.toggle('active',el===button);el.setAttribute('aria-pressed',String(el===button));});renderTurnos();});
   async function loadTurnos(){
-    const source=document.querySelector('.turnosSource');grid.setAttribute('aria-busy','true');
+    const source=document.querySelector('.turnosSource');grid.setAttribute('aria-busy','true');dutyState='loading';renderTurnos();
     try{
       const data=await getJSON('https://midas.minsal.cl/farmacia_v2/WS/getLocalesTurnos.php');
       const rows=Array.isArray(data)?data:(data.data||data.results||[]);
       if(!Array.isArray(rows))throw Error('Invalid duty response');
-      const local=rows.filter(row=>['la serena','coquimbo'].includes(norm(val(row,'comuna_nombre','comuna'))));
+      const local=rows.filter(row=>norm(val(row,'comuna_nombre','comuna'))==='coquimbo');
       pharmacies=local.filter(row=>val(row,'fecha').slice(0,10)===today());
+      dutyState='ready';
       renderTurnos();
-      source.textContent=pharmacies.length?'Consultado en Farmanet · '+new Date().toLocaleTimeString('es-CL',{timeZone:'America/Santiago',hour:'2-digit',minute:'2-digit'}):'Farmanet no devolvió registros con fecha de hoy para estas comunas.';
-    }catch{pharmacies=[];source.textContent='No fue posible verificar los turnos en vivo.';emptyTurnos('La conexión a Farmanet no está disponible. Consulta los turnos actualizados directamente en el canal oficial.');}
+      source.textContent=pharmacies.length?'Turno de Coquimbo consultado en Farmanet · '+new Date().toLocaleTimeString('es-CL',{timeZone:'America/Santiago',hour:'2-digit',minute:'2-digit'}):'Sin turno con fecha de hoy para Coquimbo en la respuesta de Farmanet.';
+    }catch{pharmacies=[];dutyState='error';source.textContent='No fue posible verificar el turno de Coquimbo en vivo.';renderTurnos();}
     finally{grid.setAttribute('aria-busy','false');}
   }
   loadTurnos();

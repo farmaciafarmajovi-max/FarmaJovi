@@ -18,7 +18,7 @@ The original logos and pharmacy images are preserved. Images depicting the proje
 
 News reads published rows from the existing Supabase `news` table. This redesign does not alter records, credentials, policies or the administrative panel. The browser publishable key is not an administrative secret.
 
-Duty cards make one request to the existing MINSAL/Farmanet endpoint, filter La Serena and Coquimbo, and display only records dated today in `America/Santiago`. On stale, empty or failed responses, show an explicit notice and the official source instead of claiming that old records are current. City filters use the same response and never show hard-coded pharmacies.
+Coquimbo duty cards make one request to the existing MINSAL/Farmanet endpoint and display only records dated today in `America/Santiago`. Stale, empty or failed responses show an explicit notice and the official source. La Serena instead shows the two continuous 24-hour pharmacies (official registry IDs 3580 and 5990), separately labelled, with full addresses, official map coordinates, directions and attributed directory telephone contacts. They are not described as a daily duty or as verified open in real time; users are asked to confirm before travelling. Those two cards remain accessible if the Coquimbo service fails or the app is offline.
 
 ## Verification
 

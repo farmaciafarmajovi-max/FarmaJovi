@@ -34,7 +34,7 @@ const server=http.createServer((req,res)=>{
   await page.locator('#chatBtn').click();assert.equal(await page.locator('#chatBtn').getAttribute('aria-expanded'),'true');assert.equal(await page.locator('#chatInput').evaluate(el=>el===document.activeElement),true);
   await page.locator('#chatInput').fill('paracetamol');await page.locator('#chatForm button').click();assert.match(await page.locator('#messages').innerText(),/PARACETAMOL/i);await page.locator('#closeChat').click();assert.equal(await page.locator('#chatBtn').getAttribute('aria-expanded'),'false');
   await page.locator('.newsReadRetry').first().click();assert.equal(await page.locator('.newsDetail').first().isVisible(),true);assert.match(await page.locator('.newsDetail').first().innerText(),/contenido completo/);await page.locator('.newsReadRetry').first().click();
-  assert.equal(await page.locator('.turnoCard').count(),2);await page.getByRole('button',{name:'La Serena',exact:true}).click();assert.equal(await page.locator('.turnoCard').count(),1);assert.match(await page.locator('.turnoCard').innerText(),/LA SERENA/);await page.getByRole('button',{name:'Coquimbo',exact:true}).click();assert.equal(await page.locator('.turnoCard').count(),1);await page.getByRole('button',{name:'Ambas comunas'}).click();
+  assert.equal(await page.locator('.turnoCard').count(),3);await page.getByRole('button',{name:'La Serena',exact:true}).click();assert.equal(await page.locator('.turnoCard').count(),2);assert.equal(await page.locator('.turnoStatus').allTextContents().then(a=>a.every(x=>x==='24 horas')),true);assert.match(await page.locator('#turnosLiveGrid').innerText(),/Cordovez 510/);assert.match(await page.locator('#turnosLiveGrid').innerText(),/Balmaceda 438/);assert.equal(await page.locator('.turnoActions a[href^="tel:"]').count(),2);assert.equal(await page.locator('.turnoActions a[href*="maps/dir/"]').count(),2);await page.getByRole('button',{name:'Coquimbo',exact:true}).click();assert.equal(await page.locator('.turnoCard').count(),1);assert.equal(await page.locator('.turnoStatus').innerText(),'De turno');await page.getByRole('button',{name:'Ambas comunas'}).click();
   await page.locator('#installAppBtn').click();assert.equal(await page.locator('#installAppHelp').isVisible(),true);await page.getByRole('button',{name:'Entendido'}).click();
   await page.locator('summary').first().click();assert.equal(await page.locator('details').first().getAttribute('open'),'');
   assert.equal(await page.locator('#precios').count(),1);assert.equal(await page.locator('#precioInputFijo').count(),1);assert.equal(await page.locator('h1').count(),1);
@@ -61,11 +61,12 @@ const server=http.createServer((req,res)=>{
   await app.goto('http://127.0.0.1:4178/FarmaJovi/',{waitUntil:'networkidle'});
   await app.evaluate(()=>navigator.serviceWorker.ready);
   await app.waitForFunction(()=>!!navigator.serviceWorker.controller);
-  assert.ok(await app.evaluate(async()=>(await caches.keys()).includes('farmajovi-v7-visual-20261112')));
+  assert.ok(await app.evaluate(async()=>(await caches.keys()).includes('farmajovi-v8-serena24h-20261112')));
   await appContext.setOffline(true);await app.reload({waitUntil:'networkidle'});
   assert.equal(await app.locator('#heroTitle').innerText(),'Una farmacia\nque te escucha.');
   assert.equal(await app.locator('.heroVisual img').evaluate(el=>el.naturalWidth>0),true);
   await app.locator('#precioInputFijo').fill('ibuprofeno');await app.locator('#buscarPrecioFijo').click();await app.locator('#resultadoPrecioFijo table').waitFor();
+  await app.getByRole('button',{name:'La Serena',exact:true}).click();assert.equal(await app.locator('.turnoCard').count(),2);
   await appContext.close();
   assert.deepEqual(errors,[]);console.log('PASS: search, chat, news expansion, city filters, fresh dates, menu, installation help, FAQ, anchors, eight viewport widths, article, service-worker cache and offline search, no JS errors.');
   await browser.close();server.close();
