@@ -1,5 +1,5 @@
-const CACHE='farmajovi-v8-serena24h-20261112';
-const CORE=['./','./index.html','./redesign.css?v=20261112-24h','./catalog.js?v=20261112','./website.js?v=20261112-24h','./site-insights.js?v=20261017-sernac','./manifest.webmanifest?v=9','./farmajovi-install-192.png','./farmajovi-install-512.png','./logo-farmajovi-header.jpg?v=20261015-2','./farmajovi-storefront.jpg','./farmajovi-interior.jpg'];
+const CACHE='farmajovi-v9-news-wrap-20261113';
+const CORE=['./','./index.html','./redesign.css?v=20261113-news-wrap','./catalog.js?v=20261112','./website.js?v=20261112-24h','./site-insights.js?v=20261017-sernac','./manifest.webmanifest?v=9','./farmajovi-install-192.png','./farmajovi-install-512.png','./logo-farmajovi-header.jpg?v=20261015-2','./farmajovi-storefront.jpg','./farmajovi-interior.jpg'];
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE)).then(()=>self.skipWaiting()))});
 self.addEventListener('activate',event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key.startsWith('farmajovi-')&&key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim()))});
 self.addEventListener('fetch',event=>{
